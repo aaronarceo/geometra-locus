@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-color1;
+  }
+
+  body {
+    @apply bg-color1 font-sans text-white antialiased;
+  }
+
+  /* Barras de desplazamiento discretas para los paneles con scroll interno */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(140 140 155 / 0.55) transparent; /* gris medio: se ve en paneles oscuros y claros */
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Transición de fade usada al alternar el panel derecho y la burbuja */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.burbuja-enter-active,
+.burbuja-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.burbuja-enter-from,
+.burbuja-leave-to {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* Pines del mapa: divIcon sin el recuadro blanco por defecto de Leaflet */
+.pin-locus {
+  background: transparent;
+  border: 0;
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.4));
+}
